@@ -2,7 +2,7 @@
 
 通过 Composer 全局命令准备固定版本的 Webman AOT Builder，再在自己的项目目录构建 Linux x86_64 程序。支持 macOS Apple Silicon、Windows x64；入口版本为 0.1.0，使用原构建器 0.3.2 完整安装包。
 
-源码与发行包见[独立 GitHub 仓库](https://github.com/supdger/webman-aot-composer)。**已登记到 Packagist，正在等待索引与公开安装验证**。索引完成后可使用下面的全局安装命令；也可按文末隔离验收流程或 GitHub VCS 配置安装。
+源码与发行包见[独立 GitHub 仓库](https://github.com/supdger/webman-aot-composer)。已在 [Packagist](https://packagist.org/packages/saiadmin/webman-aot-builder) 发布 0.1.0，并通过默认 Packagist 来源的隔离全局安装验证：
 
 ```sh
 composer global require saiadmin/webman-aot-builder
@@ -57,13 +57,4 @@ vendor/bin/webman-aot setup --state-dir="/临时目录/aot-state" --archive="/�
 vendor/bin/webman-aot --state-dir="/临时目录/aot-state" --non-interactive doctor
 ```
 
-构建时进入自己的项目目录，以临时工作目录下 `vendor/bin/webman-aot` 的完整路径执行 `--state-dir="/临时目录/aot-state" --non-interactive build`。Windows 的 Composer 会生成对应 `.bat` 代理，使用该代理运行。以上是本地包验证流程，不证明 Packagist 安装已可用。
-
-Packagist 索引未完成时，也可在隔离 Composer 全局目录配置公开源码仓库并安装固定发行版本：
-
-```sh
-composer global config repositories.webman-aot vcs https://github.com/supdger/webman-aot-composer
-composer global require saiadmin/webman-aot-builder:0.1.0
-```
-
-这条路径直接从 GitHub 获取包；Packagist 索引完成后可删除这条自定义仓库配置，使用默认安装命令。
+构建时进入自己的项目目录，以临时工作目录下 `vendor/bin/webman-aot` 的完整路径执行 `--state-dir="/临时目录/aot-state" --non-interactive build`。Windows 的 Composer 会生成对应 `.bat` 代理，使用该代理运行。以上用于验证本地修改；公开 0.1.0 已另行通过默认 Packagist 来源的全局安装、真实命令代理及帮助/版本输出验证。
