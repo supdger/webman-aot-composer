@@ -10,6 +10,22 @@ composer global require saiadmin/webman-aot-builder
 
 需系统 PHP 8.1 或更新版本、Composer，以及 macOS 的 curl/tar 或 Windows 的 curl.exe/Windows PowerShell 5.1。目前作者运行验证使用 PHP 8.4；PHP 8.1 和 Windows 实机验收尚待完成。运行 `composer global config bin-dir --absolute` 可查看命令目录，将它加入终端 PATH 后重新打开终端。
 
+已有原版 `webman-aot` 时，将 Composer 命令目录放在旧命令目录之前，或使用代理完整路径，避免继续运行旧入口。先确认 `--version` 显示入口 0.1.0、目标构建器 0.3.2；这不表示平台资源已经安装。
+
+macOS：
+
+```sh
+aot_bin="$(composer global config bin-dir --absolute)"
+"$aot_bin/webman-aot" --version
+```
+
+Windows PowerShell：
+
+```powershell
+$aotBin = composer global config bin-dir --absolute
+& (Join-Path $aotBin 'webman-aot.bat') --version
+```
+
 进入包含 `composer.json`、`composer.lock` 和 `start.php` 的 Webman 项目目录：
 
 ```sh
